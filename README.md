@@ -1,1 +1,1 @@
-this is Hello Wrold!
+C - Function pointers
