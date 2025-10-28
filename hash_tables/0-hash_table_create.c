@@ -1,11 +1,10 @@
 #include "hash_tables.h"
 
 /**
- * hash_table_create - Create a new hash table
- * @size: number of buckets (array slots)
+ * hash_table_create - creates a hash table
+ * @size: size of the array
  *
- * Return: pointer to the newly created hash_table_t on success,
- *         NULL on any failure or if size == 0.
+ * Return: pointer to the newly created hash table, or NULL on failure
  */
 hash_table_t *hash_table_create(unsigned long int size)
 {
@@ -14,14 +13,12 @@ hash_table_t *hash_table_create(unsigned long int size)
     if (size == 0)
         return (NULL);
 
-    ht = malloc(sizeof(*ht));
+    ht = malloc(sizeof(hash_table_t));
     if (ht == NULL)
         return (NULL);
 
     ht->size = size;
-
-    /* calloc to zero-initialize all bucket pointers to NULL */
-    ht->array = calloc(size, sizeof(*ht->array));
+    ht->array = calloc(size, sizeof(hash_node_t *));
     if (ht->array == NULL)
     {
         free(ht);
